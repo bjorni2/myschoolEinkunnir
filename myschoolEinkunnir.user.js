@@ -1,6 +1,8 @@
 // ==UserScript==
 // @name                Myschool einkunnir
 // @namespace	        http://www.ru.is/
+// @version				0.1
+// @author				Björn Ingi Baldvinsson
 // @description	        Birtir einkunnadreifingu.
 // @include				https://myschool.ru.is/myschool/*verkID*
 // @require				http://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.4.1/canvas.min.js
