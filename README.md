@@ -7,7 +7,7 @@ Birtir einkunnir í myschool með html5 canvas
 
 Addon: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
 
-Install script: [http://tampermonkey.net/faq.php#Q102]
+Install script: [Tampermonkey FAQ](http://tampermonkey.net/faq.php#Q102)
 
 ##Firefox
 
