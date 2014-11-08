@@ -29,9 +29,9 @@ for(var i = 0; i < myList.length; i++){
         var chartData = [];
 
         for(var i = 0; i < data.length; i++){
-            chartData[i] = {label: legend[i], x: i*5, y: parseInt(data[i])};
+            chartData[i] = {label: legend[i], y: parseInt(data[i])};
         }
-        cell.innerHTML = '<div id="chartContainer"></div>';
+        cell.innerHTML = '<div id="chartContainer" style="height: 400px; width: 75%;"></div>';
         
         var chart = new CanvasJS.Chart("chartContainer", {
             
