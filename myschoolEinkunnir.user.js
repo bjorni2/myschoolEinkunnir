@@ -25,11 +25,20 @@ for(var i = 0; i < myList.length; i++){
         legend = legend.substring(legend.indexOf('=') + 1, legend.indexOf('"'));
         //alert(legend);
         legend = legend.split('|');
+       	
+        var selectedIndex = cellContent.indexOf('selected');
+        var selected = cellContent.substring(selectedIndex);
+        selected = selected.substring(selected.indexOf('=') + 1, selected.indexOf('&'));
+        selected = parseInt(selected);
         
         var chartData = [];
-
+        
         for(var i = 0; i < data.length; i++){
-            chartData[i] = {label: legend[i], y: parseInt(data[i])};
+            if(i + 1 == selected){
+                chartData[i] = {label: legend[i], y: parseInt(data[i]), x: i, indexLabel: "↓", indexLabelFontColor: "red" };
+            }else{
+                chartData[i] = {label: legend[i], y: parseInt(data[i]), x: i};
+            }
         }
         cell.innerHTML = '<div id="chartContainer" style="height: 400px; width: 75%;"></div>';
         
@@ -40,9 +49,11 @@ for(var i = 0; i < myList.length; i++){
             },
             data: [//array of dataSeries              
                 { //dataSeries object
-                    
+                    indexLabelFontSize: 32,
+                    indexLabelFontFamily:"Lucida Console" ,
                     /*** Change type "column" to "bar", "area", "line" or "pie"***/
                     type: "column",
+                    color: "blue",
                     dataPoints: chartData
                 }
             ]
