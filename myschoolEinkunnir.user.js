@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                Myschool einkunnir
 // @namespace	        http://www.ru.is/
-// @version				0.1
+// @version				0.2
 // @author				Björn Ingi Baldvinsson
 // @description	        Birtir einkunnadreifingu.
 // @include				https://myschool.ru.is/myschool/*verkID*
@@ -10,22 +10,22 @@
 var myList = document.getElementsByTagName("h3"); // get all h3 elements
 for(var i = 0; i < myList.length; i++){
     if(myList[i].textContent  == 'Tölfræði'){
-        //alert('Fann tölfræði');
+
         var cell = myList[i].nextSibling.firstChild.firstChild.firstChild;
         var cellContent = cell.innerHTML;
-        //alert(cellContent);
+
         var dataIndex = cellContent.indexOf('data');
         var data = cellContent.substring(dataIndex);
         data = data.substring(data.indexOf('=') + 1, data.indexOf('&'));
-        //alert(data);
+
         data = data.split('|');
         
         var legendIndex = cellContent.indexOf('legend');
         var legend = cellContent.substring(legendIndex);
         legend = legend.substring(legend.indexOf('=') + 1, legend.indexOf('"'));
-        //alert(legend);
+
         legend = legend.split('|');
-       	
+        
         var selectedIndex = cellContent.indexOf('selected');
         var selected = cellContent.substring(selectedIndex);
         selected = selected.substring(selected.indexOf('=') + 1, selected.indexOf('&'));
@@ -35,7 +35,7 @@ for(var i = 0; i < myList.length; i++){
         
         for(var i = 0; i < data.length; i++){
             if(i + 1 == selected){
-                chartData[i] = {label: legend[i], y: parseInt(data[i]), x: i, indexLabel: "↓", indexLabelFontColor: "red" };
+                chartData[i] = {label: legend[i], y: parseInt(data[i]), x: i, color: "red" };
             }else{
                 chartData[i] = {label: legend[i], y: parseInt(data[i]), x: i};
             }
@@ -45,10 +45,19 @@ for(var i = 0; i < myList.length; i++){
         var chart = new CanvasJS.Chart("chartContainer", {
             
             title:{
-                text: "Einkunnir"              
+                text: "Dreifing einkunna"              
             },
-            data: [//array of dataSeries              
-                { //dataSeries object
+            
+            axisX:{ 
+                title: "Einkunn",
+            },
+            
+            axisY:{ 
+                title: "Fjöldi nemenda",
+            },
+            
+            data: [            
+                { 
                     indexLabelFontSize: 32,
                     indexLabelFontFamily:"Lucida Console" ,
                     /*** Change type "column" to "bar", "area", "line" or "pie"***/
